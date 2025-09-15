@@ -1,23 +1,19 @@
 <?php
 
-// Configurações do banco
-$host    = "localhost";   // normalmente não precisa alterar
-$usuario = "root";        // substituir se seu usuário não for root
-$senha   = "";            // substituir se você tiver senha no MySQL
-$banco   = "";       // substituir pelo nome do seu banco criado no phpMyAdmin
+$host    = "localhost";  
+$usuario = "root";        
+$senha   = "";            
+$banco   = "Abel-1D";     
 
-// Conexão MySQLi
 $conexao = mysqli_connect($host, $usuario, $senha, $banco);
 
 if (!$conexao) {
     die("Erro ao conectar: " . mysqli_connect_error());
 }
 
-// SENSITIVE CASE suportar acentos e Ç
 mysqli_set_charset($conexao, "utf8");
 
 
-include "conexao.php"; // inclui o arquivo de conexão
+include "conexao.php"; 
 
-$result = mysqli_query($conexao, "SELECT * FROM recados"); // exemplo de consulta
-?>
+$result = mysqli_query($conexao, "SELECT * FROM recados"); 
