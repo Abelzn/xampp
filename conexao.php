@@ -1,6 +1,5 @@
 <?php
 
-<?php
 
 $host    = "localhost";   
 $usuario = "root";        
@@ -24,5 +23,6 @@ if (!$conexao) {
 mysqli_set_charset($conexao, "utf8");
 <?php
 include "conexao.php";
+
 
 $result = mysqli_query($conexao, "SELECT * FROM pedidos"); 
