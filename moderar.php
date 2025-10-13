@@ -1,6 +1,7 @@
 <?php
 include "conexao.php";
 
+// Atualizar recado
 if(isset($_POST['atualiza'])){
     $idatualiza = intval($_POST['id']);
     $nome       = mysqli_real_escape_string($conexao, $_POST['nome']);
@@ -13,6 +14,7 @@ if(isset($_POST['atualiza'])){
     exit;
 }
 
+// Excluir recado
 if(isset($_GET['acao']) && $_GET['acao'] == 'excluir'){
     $id = intval($_GET['id']);
     mysqli_query($conexao, "DELETE FROM abel-1d WHERE id=$id") or die("Erro ao deletar: " . mysqli_error($conexao));
@@ -63,7 +65,7 @@ if(mysqli_num_rows($seleciona) <= 0){
     echo "<p>Nenhum pedido no mural!</p>";
 }else{
     while($res = mysqli_fetch_assoc($seleciona)){
-        echo '<ul class="recados">';
+        echo '<ul class="abel-1d">';
         echo '<li><strong>ID:</strong> ' . $res['id'] . ' | 
               <a href="moderar.php?acao=excluir&id=' . $res['id'] . '">Remover</a> | 
               <a href="moderar.php?acao=editar&id=' . $res['id'] . '">Modificar</a></li>';

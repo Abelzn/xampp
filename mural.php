@@ -60,7 +60,7 @@ $(document).ready(function() {
 <?php
 $seleciona = mysqli_query($conexao, "SELECT * FROM abel-1d ORDER BY id DESC");
 while($res = mysqli_fetch_assoc($seleciona)){
-    echo '<ul class="recados">';
+    echo '<ul class="abel-1d">';
     echo '<li><strong>ID:</strong> ' . $res['id'] . '</li>';
     echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
     echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
