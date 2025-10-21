@@ -1,12 +1,13 @@
 <?php
 include "conexao.php";
 
+// Inserir novo pedido/recado
 if(isset($_POST['cadastra'])){
     $nome  = mysqli_real_escape_string($conexao, $_POST['nome']);
     $email = mysqli_real_escape_string($conexao, $_POST['email']);
     $msg   = mysqli_real_escape_string($conexao, $_POST['msg']);
 
-    $sql = "INSERT INTO abel (nome, email, mensagem) VALUES ('$nome', '$email', '$msg')";
+    $sql = "INSERT INTO recados (nome, email, mensagem) VALUES ('$nome', '$email', '$msg')";
     mysqli_query($conexao, $sql) or die("Erro ao inserir dados: " . mysqli_error($conexao));
     header("Location: mural.php");
     exit;
@@ -17,12 +18,12 @@ if(isset($_POST['cadastra'])){
 <head>
 <meta charset="utf-8"/>
 <title>Mural de pedidos</title>
-<link rel="stylesheet" href="styless.css"/>
+<link rel="stylesheet" href="style.css"/>
 <script src="scripts/jquery.js"></script>
 <script src="scripts/jquery.validate.js"></script>
 <script>
 $(document).ready(function() {
-    $("#mural").validate({
+    $("#andrei").validate({
         rules: {
             nome: { required: true, minlength: 4 },
             email: { required: true, email: true },
@@ -57,12 +58,7 @@ $(document).ready(function() {
 </div>
 
 <?php
-$seleciona = mysqli_query($conexao, "SELECT * FROM abel-1d ORDER BY id DESC");
-
-if (!$seleciona) {
-    die("Erro na consulta: " . mysqli_error($conexao));
-}
-
+$seleciona = mysqli_query($conexao, "SELECT * FROM recados ORDER BY id DESC");
 while($res = mysqli_fetch_assoc($seleciona)){
     echo '<ul class="recados">';
     echo '<li><strong>ID:</strong> ' . $res['id'] . '</li>';
@@ -71,7 +67,6 @@ while($res = mysqli_fetch_assoc($seleciona)){
     echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mensagem'])) . '</li>';
     echo '</ul>';
 }
-
 ?>
 
 <div id="footer">
